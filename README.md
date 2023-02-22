@@ -1,4 +1,4 @@
-#LOGITECHCARD
+# LOGITECHCARD
 
 Code base du fil rouge pour le cours  [Créez des pages web dynamiques avec JavaScript] 
 
