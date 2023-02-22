@@ -1,6 +1,6 @@
-# 7697016-Front-End.1
+#LOGITECHCARD
 
-Code base du fil rouge pour le cours OpenClassrooms [Créez des pages web dynamiques avec JavaScript](https://openclassrooms.com/fr/courses/7697016-creez-des-pages-web-dynamiques-avec-javascript)
+Code base du fil rouge pour le cours  [Créez des pages web dynamiques avec JavaScript] 
 
 ## Installation
 
