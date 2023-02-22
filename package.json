@@ -1,0 +1,23 @@
+{
+  "name": "web-ventes-des-pieces-de-vehicules",
+  "version": "1.0.0",
+  "description": "Support de Code pour Creez des pages web dynamiques avec javascript",
+  "main": "pieces.js",
+  "scripts": {
+    "start":"http-server",
+    "dev":"http-server"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ernestLogitech/web-ventes-des-pieces-de-vehicules.git"
+  },
+  "author": "Mernesto",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ernestLogitech/web-ventes-des-pieces-de-vehicules/issues"
+  },
+  "homepage": "https://github.com/ernestLogitech/web-ventes-des-pieces-de-vehicules.git#readme",
+  "dependencies": {
+    "http-server": "^14.1.1"
+  }
+}
