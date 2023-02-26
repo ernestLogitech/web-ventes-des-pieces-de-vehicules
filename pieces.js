@@ -1,6 +1,10 @@
+import { ajoutListenersAvis, ajoutListenerEnvoyerAvis  } from "./avis.js";
 // Récupération des pièces depuis le fichier JSON
-const reponse = await fetch("pieces-autos.json");
+//const reponse = await fetch("pieces-autos.json");
+const reponse = await fetch(`http://localhost:8081/pieces`);
 const pieces = await reponse.json();
+
+ajoutListenerEnvoyerAvis();
 
 /* ce code fontionne tres bien mais nus souhaitons ajouter une balise dedie a la piece automobile
 //const article = pieces[0];
@@ -43,6 +47,9 @@ for(let i= 0; i < pieces.length; i++){
     descriptionElement.innerText = article.description || "Pas de description pour le moment....";
     const enstockElement = document.createElement("p");
     enstockElement.innerText = article.disponibilite ? "  En stoc...." : "Rupture de stock....";
+    const buttonavis = document.createElement("button");
+    buttonavis.dataset.ib = article.id;
+    buttonavis.textContent = "Afficher les avis";
 
     //rattache les elements crees au parents
     const sectionFiches = document.querySelector(".fiches");
@@ -53,7 +60,10 @@ for(let i= 0; i < pieces.length; i++){
     pieceElement.appendChild(categorieElement);
     pieceElement.appendChild(descriptionElement);
     pieceElement.appendChild(enstockElement);
+    pieceElement.appendChild(buttonavis);
+
 }
+ajoutListenersAvis();
 }
 genererPieces(pieces);
 //fonction sort permet de filter les objet par ordre de prix croissant
@@ -150,3 +160,46 @@ inputPrixMax.addEventListener('input', function(){
     genererPieces(piecesFiltrees);  
     console.log(piecesFiltrees)
 });
+
+// piece abordables
+
+const pElement = document.createElement('p')
+pElement.innerText = "Pièces abordables";
+//Création de la liste
+const abordablesElements = document.createElement('ul');
+//Ajout de chaque nom à la liste
+for(let i=0; i < noms.length ; i++){
+    const nomElement = document.createElement('li');
+    nomElement.innerText = noms[i];
+    abordablesElements.appendChild(nomElement);
+}
+// Ajout de l'en-tête puis de la liste au bloc résultats filtres
+document.querySelector('.abordables')
+    .appendChild(pElement)
+    .appendChild(abordablesElements);
+
+//Code Exercice 
+const nomsDisponibles = pieces.map(piece => piece.nom)
+const prixDisponibles = pieces.map(piece => piece.prix)
+
+for(let i = pieces.length -1 ; i >= 0; i--){
+    if(pieces[i].disponibilite === false){
+        nomsDisponibles.splice(i,1);
+        prixDisponibles.splice(i,1);
+    }
+}
+
+
+const disponiblesElement = document.createElement('ul');
+
+for(let i=0 ; i < nomsDisponibles.length ; i++){
+    const nomElement = document.createElement('li');
+    nomElement.innerText = `${nomsDisponibles[i]} - ${prixDisponibles[i]} €`
+    disponiblesElement.appendChild(nomElement);
+}
+
+const pElementDisponible = document.createElement('p')
+pElementDisponible.innerText = "Pièces disponibles:";
+document.querySelector('.disponibles').appendChild(pElementDisponible).appendChild(disponiblesElement);
+ 
+ 
